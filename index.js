@@ -1,12 +1,22 @@
-const express = require("express");
+const Server = require("./models/server");
 
-const app = express();
-const port = 8080;
+require("dotenv").config();
 
-app.get("/", (req, res) => {
-  res.send("Hola wacho");
-});
+const server = new Server();
 
-app.listen(port, () => {
-  console.log(`Escuchando el puerto ${port}`);
-});
+server.listen();
+
+// const express = require("express");
+
+// const app = express();
+// const port = process.env.PORT;
+
+// app.get("/", (req, res) => {
+//   res.json({
+//     msg: "Hola wacho",
+//   });
+// });
+
+// app.listen(port, () => {
+//   console.log(`Escuchando el puerto ${port}`);
+// });
