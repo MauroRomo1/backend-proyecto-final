@@ -1,29 +1,20 @@
 const { Router } = require("express");
 
+const {
+  publicacionesGet,
+  publicacionesPost,
+  publicacionesPut,
+  publicacionesDelete,
+} = require("../controllers/Publicaciones");
+
 const router = Router();
 
-router.get("/", (req, res) => {
-  res.json({
-    msg: "GET - Info traida",
-  });
-});
+router.get("/", publicacionesGet);
 
-router.post("/", (req, res) => {
-  res.json({
-    msg: "POST - Info creada",
-  });
-});
+router.post("/", publicacionesPost);
 
-router.put("/", (req, res) => {
-  res.json({
-    msg: "PUT - Info actualizada",
-  });
-});
+router.put("/:id", publicacionesPut);
 
-router.delete("/", (req, res) => {
-  res.json({
-    msg: "DELETE - Info eliminada",
-  });
-});
+router.delete("/:id", publicacionesDelete);
 
 module.exports = router;
