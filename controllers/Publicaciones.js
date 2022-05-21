@@ -1,5 +1,8 @@
 const { response, request } = require("express");
 
+// Importando el modelo de publicaciones
+const Publicacione = require("../models/publicacione");
+
 const publicacionesGet = (req = request, res = response) => {
   const query = req.query;
   res.json({
@@ -8,11 +11,19 @@ const publicacionesGet = (req = request, res = response) => {
   });
 };
 
-const publicacionesPost = (req = request, res = response) => {
+const publicacionesPost = async (req = request, res = response) => {
   const datos = req.body;
+
+  const { descripcion, img, usuario, fecha } = datos;
+
+  const publicacion = new Publicacione({ descripcion, img, usuario, fecha });
+
+  // Guardar los datos de la publicacion en BD
+  await publicacion.save();
+
   res.json({
     msg: "POST - Info creada",
-    datos,
+    publicacion,
   });
 };
 
