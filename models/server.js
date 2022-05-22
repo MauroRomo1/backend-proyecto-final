@@ -41,7 +41,6 @@ class Server {
 
   // Rutas
   routes() {
-    this.app.use(this.authPath, require("../routes/auth"));
     this.app.use(this.publicacionesPath, require("../routes/publicacione"));
   }
 
