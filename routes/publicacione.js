@@ -1,20 +1,20 @@
 const { Router } = require("express");
 
 const {
-  publicacionesGet,
-  publicacionesPost,
-  publicacionesPut,
-  publicacionesDelete,
+  obtenerPublicaciones,
+  crearPublicacion,
+  actualizarPublicacion,
+  borrarPublicacion,
 } = require("../controllers/Publicaciones");
 
 const router = Router();
 
-router.get("/", publicacionesGet);
+router.get("/", obtenerPublicaciones);
 
-router.post("/", publicacionesPost);
+router.post("/", crearPublicacion);
 
-router.put("/:id", publicacionesPut);
+router.put("/:id", actualizarPublicacion);
 
-router.delete("/:id", publicacionesDelete);
+router.delete("/:id", borrarPublicacion);
 
 module.exports = router;
