@@ -12,15 +12,23 @@ const obtenerPublicaciones = (req = request, res = response) => {
 
 //POST - Creo una publicacion
 const crearPublicacion = async (req = request, res = response) => {
-  // const { descripcion, img, usuario, fecha } = datos;
+  const datos = req.body;
+  const { descripcion, img, usuario, like, fecha } = datos;
 
-  // const publicacion = new Publicacione({ descripcion, img, usuario, fecha });
+  const publicacion = new Publicacione({
+    descripcion,
+    img,
+    usuario,
+    like,
+    fecha,
+  });
 
-  // // Guardar los datos de la publicacion en BD
-  // await publicacion.save();
+  // Guardar los datos de la publicacion en BD
+  await publicacion.save();
 
   res.json({
     msg: "POST - Publicacion creada",
+    publicacion,
   });
 };
 //PUT - Actualizo una publicacion por su ID

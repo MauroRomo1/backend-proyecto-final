@@ -19,6 +19,11 @@ const PublicacionesSchema = Schema({
     required: true,
   },
 
+  likes: {
+    type: Number,
+    default: 0,
+  },
+
   fecha: {
     type: String,
   },
