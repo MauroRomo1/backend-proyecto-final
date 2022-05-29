@@ -1,5 +1,8 @@
 const express = require("express");
 
+// Para menejar las subida de archivos
+const fileUpload = require("express-fileupload");
+
 const cors = require("cors");
 
 // Importando la configuracion de la conexion con la BD
@@ -11,6 +14,7 @@ class Server {
     this.port = process.env.PORT;
     this.authPath = "/api/auth";
     this.publicacionesPath = "/api/publicaciones";
+    this.uploadsPath = "/api/uploads";
 
     // Conectar BD
     this.conectarDB();
@@ -37,11 +41,21 @@ class Server {
 
     // directorio publico
     this.app.use(express.static("public"));
+
+    //fileupload - carga de archivos
+    this.app.use(
+      fileUpload({
+        useTempFiles: true,
+        tempFileDir: "/tmp/",
+        createParentPath: true,
+      })
+    );
   }
 
   // Rutas
   routes() {
     this.app.use(this.publicacionesPath, require("../routes/publicacione"));
+    this.app.use(this.uploadsPath, require("../routes/uploads"));
   }
 
   listen() {
