@@ -13,7 +13,7 @@ const { validarExtension } = require("../middlewares/validar-extension");
 //Controlador que permite subir la imagen
 const { actualizarImagenCloudinary } = require("../controllers/uploads");
 
-//Validar colecciones permitidas (usuarios, productos) para guardar la imagen
+//Validar colecciones permitidas (usuarios, publicaciones) para guardar la imagen
 const { coleccionesPermitidas } = require("../helpers/db-validators");
 
 const router = Router();
@@ -25,7 +25,7 @@ router.put(
     validarExtension,
     check("id", "El id debe ser de mongo").isMongoId(),
     check("coleccion").custom((c) =>
-      coleccionesPermitidas(c, ["usuarios", "productos"])
+      coleccionesPermitidas(c, ["usuarios", "publicaciones"])
     ),
     validarCampos,
   ],

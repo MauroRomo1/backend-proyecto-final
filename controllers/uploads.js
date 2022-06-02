@@ -4,8 +4,8 @@ cloudinary.config(process.env.CLOUDINARY_URL); //configuro cloudinary
 const { response } = require("express");
 
 // Modelos de usuarios y publicaciones
-// const Usuario = require("../models/usuario"); //Descomentar esto cuando tengamos las cosas de usuarios
-const publicacione = require("../models/publicacione");
+const Usuario = require("../models/usuario");
+const Publicacione = require("../models/publicacione");
 
 //Subir la imagen a Cloudinary - Nube
 const actualizarImagenCloudinary = async (req, res = response) => {
@@ -23,7 +23,7 @@ const actualizarImagenCloudinary = async (req, res = response) => {
       }
       break;
     case "publicaciones":
-      modelo = await publicacione.findById(id);
+      modelo = await Publicacione.findById(id);
       if (!modelo) {
         return res.status(400).json({
           msg: `No existe una publicacion con el id ${id}`,

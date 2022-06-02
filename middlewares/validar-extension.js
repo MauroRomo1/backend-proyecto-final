@@ -12,7 +12,7 @@ const validarExtension = (req = request, res = response, next) => {
   //validar la extensión
   if (!extensionesValidas.includes(extension)) {
     return res.status(400).json({
-      msg: `La extensión ${extension} no es permitida , ${extensionesValidas}`,
+      msg: `La extensión ${extension} no es permitida, las extensiones que son validas son: ${extensionesValidas}`,
     });
   }
 
